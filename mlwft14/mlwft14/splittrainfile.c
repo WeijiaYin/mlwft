@@ -14,109 +14,78 @@ int ln = 0;
 int max;
 
 
-int kcrossvalidation(int l, int k, char *inputfile, char *outputFolder)
+int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile)
 {
-	int count = countLine(inputfile);
+	int count = countLine(trainFile);
+	int countParameters = countLine(parameterFile);
 	int number = count / k;
-	//	FILE *tf = fopen(inputfile, "r");
 	FILE *p;
 	FILE *p1;
-	char *bestModel;
+	char bestModel[1000];
 	double accuracy;
+	double accuracyTrain;
 	double maxAccuracy = 0.0;
-
-	for (int i = 1; i <= k; i++)
+	double maxAccuracyOnTest = 0.0;
+	double maxAccuracyOnTrain = 0.0;
+	char bestModelOnTest[1000];
+	FILE *parameters;
+	char lineParameters[100000];
+	char bestParameters[100000];
+	parameters = fopen(parameterFile, "r");
+	for (int h = 0; h < countParameters; h++)
 	{
-		FILE *tf = fopen(inputfile, "r");
-		strcpy(splitname, filename);
-		itoa(l, numbertochar1, 10);
-		strcat(splitname, numbertochar1);
-		itoa(i, numbertochar, 10);
-		strcat(splitname, numbertochar);
-		char *s = splitname;
-		p = fopen("temp_train", "w");
-		p1 = fopen("temp_test", "w");
-		for (int j = 0; j < count; j++)
+		fgets(lineParameters, 10000, parameters);
+		for (int i = 1; i <= k; i++)
 		{
-			if (j <= i * number && j >= (i - 1) * number)
+			FILE *tf = fopen(trainFile, "r");
+			strcpy(splitname, filename);
+			itoa(h, numbertochar1, 10);
+			strcat(splitname, numbertochar1);
+			itoa(i, numbertochar, 10);
+			strcat(splitname, numbertochar);
+			char *s = splitname;
+			p = fopen("temp_train", "w");
+			p1 = fopen("temp_test", "w");
+			for (int j = 0; j < count; j++)
 			{
-				fgets(line, 10000, tf);
-				fprintf(p1, "%s", line);
-			}
-			else
-			{
-				fgets(line, 10000, tf);
-				fprintf(p, "%s", line);
+				if (j <= i * number && j >= (i - 1) * number)
+				{
+					fgets(line, 10000, tf);
+					fprintf(p1, "%s", line);
+				}
+				else
+				{
+					fgets(line, 10000, tf);
+					fprintf(p, "%s", line);
 
+				}
+			}
+			fclose(p);
+			fclose(p1);
+			fclose(tf);
+			svmTrain("temp_train", s, lineParameters);
+			accuracy = svmpredict("temp_test", s);
+			if (accuracy > maxAccuracy)
+			{
+				maxAccuracy = accuracy;
+				strcpy(bestModel, s);
 			}
 		}
-		svmTrain("temp_train", s, "adsasdsa");
-		accuracy = svmpredict("temp_test", s);
-		if (accuracy > maxAccuracy)
+
+		accuracyTrain = svmpredict(testFile, bestModel);
+		if (accuracyTrain > maxAccuracyOnTest)
 		{
-			maxAccuracy = accuracy;
-			bestModel = s;
+			maxAccuracyOnTest = accuracyTrain;
+			strcpy(bestModelOnTest, bestModel);
+			maxAccuracyOnTrain = maxAccuracy;
+			strcpy(bestParameters, lineParameters);
 		}
-		fclose(p);
-		fclose(p1);
-		fclose(tf);
+
 	}
+
+	printf("best parameters:%s, accuracy on trainset: %lf, accuracy on testset: %lf", bestParameters, maxAccuracyOnTest, maxAccuracyOnTrain);
+
+	fclose(parameters);
 	return 0;
 }
-
-/*int splitTrainFile(int k, char *inputfile, char *outputFolder)
-{
-	int count = countLine(inputfile);
-	int number = count / k;
-	FILE *tf = fopen(inputfile, "r");
-	FILE *p;
-	for (int i = 1; i <= k; i++)
-	{
-		strcpy(splitname,filename);
-		itoa(i, numbertochar, 10);
-		strcat(splitname , numbertochar);
-		char *s = splitname;
-		p = fopen(s, "w");
-		int a = i * number;
-		while (ln <= a)
-		{
-			fgets(line, 10000, tf);
-			ln++;
-			fprintf(p, "%s", line);
-		}
-		fclose(p);
-	}
-	fclose(tf);
-	return 0;
-}
-
-int trainTrainFile(int k, char *folderPath, char *outputModel)
-{
-
-	int j = 0;
-	char fileNames[10][10];
-	intptr_t hFile = 0;
-	struct _finddata_t fileInfo;
-	char p[700] = { 0 };
-	strcpy(p, folderPath);
-	strcat(p, "\\*");
-	if ((hFile = _findfirst(p, &fileInfo)) != -1)
-	{
-		do
-		{
-			strcpy(fileNames[j], fileInfo.name);
-			j++;
-		} while (_findnext(hFile, &fileInfo) == 0);
-		_findclose(hFile);
-	}
-
-	for (int i = 0; i < k; i++)
-	{
-
-	}
-	
-	
-
-}
-*/
 

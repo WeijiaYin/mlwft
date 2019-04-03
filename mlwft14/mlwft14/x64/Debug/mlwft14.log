@@ -1,8 +1,7 @@
 ﻿  splittrainfile.c
-c:\users\administrator\documents\visual studio 2015\projects\mlwft14\mlwft14\splittrainfile.c(17): warning C4013: 'countLine' undefined; assuming extern returning int
-c:\users\administrator\documents\visual studio 2015\projects\mlwft14\mlwft14\splittrainfile.c(23): warning C4013: 'strcpy' undefined; assuming extern returning int
-c:\users\administrator\documents\visual studio 2015\projects\mlwft14\mlwft14\splittrainfile.c(24): warning C4013: 'itoa' undefined; assuming extern returning int
-c:\users\administrator\documents\visual studio 2015\projects\mlwft14\mlwft14\splittrainfile.c(25): warning C4013: 'strcat' undefined; assuming extern returning int
-c:\users\administrator\documents\visual studio 2015\projects\mlwft14\mlwft14\splittrainfile.c(68): warning C4716: 'trainTrainFile': must return a value
-  mlwft14.vcxproj -> C:\Users\Administrator\documents\visual studio 2015\Projects\mlwft14\x64\Debug\mlwft14.exe
-  mlwft14.vcxproj -> C:\Users\Administrator\documents\visual studio 2015\Projects\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)
+d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(19): warning C4013: 'countLine' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(41): warning C4013: 'strcpy' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(42): warning C4013: 'itoa' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(43): warning C4013: 'strcat' undefined; assuming extern returning int
+  mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
+  mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)

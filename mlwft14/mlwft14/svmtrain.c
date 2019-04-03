@@ -50,7 +50,7 @@ static void exit_input_error(int line_num)
 	exit(1);
 }
 
-void parse_command_line(/*int argc, char **argv,*/ char *input_file_name/*, char *model_file_name*/);
+void parse_command_line(/*int argc, char **argv,*/ char *parameters/*, char *model_file_name*/);
 void read_problem(const char *filename);
 void do_cross_validation();
 
@@ -101,6 +101,7 @@ int svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 	{
 		do_cross_validation();
 	}
+	
 
 	model = svm_train(&prob, &param);
 	if (svm_save_model(model_file_name, model))
@@ -158,9 +159,14 @@ void do_cross_validation()
 	free(target);
 }
 
+
 void parse_command_line(char *parameters)
 {
-	int i;
+	int i = 0;
+	char pr[100];
+	char *results[100000];
+	char *result;
+	char *result1;
 	void(*print_func)(const char*) = NULL;	// default printing to stdout
 
 											// default values
@@ -181,6 +187,85 @@ void parse_command_line(char *parameters)
 	param.weight = NULL;
 	cross_validation = 1;
 	nr_fold = 4;
+
+	strcpy(pr, parameters);
+	result = strtok(pr, " ");
+	while (result != NULL)
+	{
+		printf("%s\n", result);
+		results[i] = result;
+		i++;
+		result = strtok(NULL, " ");
+	}
+	// parse options
+	for (int j = 0; j<strlen(results); j++)
+	{
+		result1 = strtok(results[j], "=");
+		switch (result1[0])
+		{
+		case 's':
+			param.svm_type = atoi(strtok(NULL, "="));
+			break;
+		case 't':
+			param.kernel_type = atoi(strtok(NULL, "="));
+			break;
+		case 'd':
+			param.degree = atoi(strtok(NULL, "="));
+			break;
+		case 'g':
+			param.gamma = atof(strtok(NULL, "="));
+			break;
+		case 'r':
+			param.coef0 = atof(strtok(NULL, "="));
+			break;
+		case 'n':
+			param.nu = atof(strtok(NULL, "="));
+			break;
+		case 'm':
+			param.cache_size = atof(strtok(NULL, "="));
+			break;
+		case 'c':
+			param.C = atof(strtok(NULL, "="));
+			break;
+		case 'e':
+			param.eps = atof(strtok(NULL, "="));
+			break;
+		case 'p':
+			param.p = atof(strtok(NULL, "="));
+			break;
+		case 'h':
+			param.shrinking = atoi(strtok(NULL, "="));
+			break;
+		case 'b':
+			param.probability = atoi(strtok(NULL, "="));
+			break;
+		case 'q':
+			print_func = &print_null;
+			i--;
+			break;
+		case 'v':
+			cross_validation = 1;
+			nr_fold = atoi(strtok(NULL, "="));
+			if (nr_fold < 2)
+			{
+				fprintf(stderr, "n-fold cross validation: n must >= 2\n");
+				exit_with_help();
+			}
+			break;
+		case 'w':
+			++param.nr_weight;
+			param.weight_label = (int *)realloc(param.weight_label, sizeof(int)*param.nr_weight);
+			param.weight = (double *)realloc(param.weight, sizeof(double)*param.nr_weight);
+			param.weight_label[param.nr_weight - 1] = atoi(&result1[1]);
+			param.weight[param.nr_weight - 1] = atof(strtok(NULL, "="));
+			break;
+		default:
+			fprintf(stderr, "Unknown option: -%c\n", result1[0]);
+			exit_with_help();
+		}
+	}
+
+	svm_set_print_string_function(print_func);
 
 //	svm_set_print_string_function(print_func);
 
