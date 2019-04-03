@@ -79,7 +79,7 @@ int main()
 	*/
 //	splitTrainFile(3, "diabetes_split_train.scale", "asdsf");
 //	trainTrainFile(3, ".\\train", "sdfad");
-	kcrossvalidation(3, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+	kcrossvalidation(8, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
 //	svmTrain();
 //	svmpredict();
 
