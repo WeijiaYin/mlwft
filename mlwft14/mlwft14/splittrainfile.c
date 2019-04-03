@@ -83,7 +83,7 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 
 	}
 
-	printf("best parameters:%s, accuracy on trainset: %lf, accuracy on testset: %lf", bestParameters, maxAccuracyOnTest, maxAccuracyOnTrain);
+	printf("best parameters:%s, best model:%s accuracy on trainset: %lf, accuracy on testset: %lf", bestParameters, bestModelOnTest, maxAccuracyOnTest, maxAccuracyOnTrain);
 
 	fclose(parameters);
 	return 0;

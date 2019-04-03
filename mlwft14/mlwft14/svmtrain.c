@@ -52,13 +52,13 @@ static void exit_input_error(int line_num)
 
 void parse_command_line(/*int argc, char **argv,*/ char *parameters/*, char *model_file_name*/);
 void read_problem(const char *filename);
-void do_cross_validation();
+//void do_cross_validation();
 
 struct svm_parameter param;		// set by parse_command_line
 struct svm_problem prob;		// set by read_problem
 struct svm_model *model;
 struct svm_node *x_space;
-int cross_validation;
+//int cross_validation;
 int nr_fold;
 
 static char *line = NULL;
@@ -97,10 +97,11 @@ int svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 		exit(1);
 	}
 
-	if (cross_validation)
+/*	if (cross_validation)
 	{
 		do_cross_validation();
 	}
+	*/
 	
 
 	model = svm_train(&prob, &param);
@@ -120,7 +121,7 @@ int svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 	return 0;
 }
 
-void do_cross_validation()
+/*void do_cross_validation()
 {
 	int i;
 	int total_correct = 0;
@@ -158,6 +159,7 @@ void do_cross_validation()
 	}
 	free(target);
 }
+*/
 
 
 void parse_command_line(char *parameters)
@@ -185,7 +187,7 @@ void parse_command_line(char *parameters)
 	param.nr_weight = 0;
 	param.weight_label = NULL;
 	param.weight = NULL;
-	cross_validation = 1;
+//	cross_validation = 1;
 	nr_fold = 4;
 
 	strcpy(pr, parameters);
@@ -198,7 +200,7 @@ void parse_command_line(char *parameters)
 		result = strtok(NULL, " ");
 	}
 	// parse options
-	for (int j = 0; j<strlen(results); j++)
+	for (int j = 0; j<i; j++)
 	{
 		result1 = strtok(results[j], "=");
 		switch (result1[0])
@@ -243,7 +245,7 @@ void parse_command_line(char *parameters)
 			print_func = &print_null;
 			i--;
 			break;
-		case 'v':
+/*		case 'v':
 			cross_validation = 1;
 			nr_fold = atoi(strtok(NULL, "="));
 			if (nr_fold < 2)
@@ -251,7 +253,7 @@ void parse_command_line(char *parameters)
 				fprintf(stderr, "n-fold cross validation: n must >= 2\n");
 				exit_with_help();
 			}
-			break;
+			break;*/
 		case 'w':
 			++param.nr_weight;
 			param.weight_label = (int *)realloc(param.weight_label, sizeof(int)*param.nr_weight);
@@ -266,8 +268,6 @@ void parse_command_line(char *parameters)
 	}
 
 	svm_set_print_string_function(print_func);
-
-//	svm_set_print_string_function(print_func);
 
 }
 
