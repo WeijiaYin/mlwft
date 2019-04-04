@@ -146,7 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="format.h" />
-    <ClInclude Include="splittrainfile.h" />
+    <ClInclude Include="crossvalidation.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="svm.h" />
     <ClInclude Include="svmpredict.h" />
@@ -157,7 +157,7 @@
   <ItemGroup>
     <ClCompile Include="format.c" />
     <ClCompile Include="mlwft14.c" />
-    <ClCompile Include="splittrainfile.c" />
+    <ClCompile Include="crossvalidation.c" />
     <ClCompile Include="stdafx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

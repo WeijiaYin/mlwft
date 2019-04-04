@@ -1,22 +1,2 @@
-﻿  stdafx.c
-  svmtrain.c
-  svmscale.c
-d:\politechnika\mlwft\mlwft14\mlwft14\svmscale.c(22): warning C4005: 'max': macro redefinition
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1282): note: see previous definition of 'max'
-d:\politechnika\mlwft\mlwft14\mlwft14\svmscale.c(23): warning C4005: 'min': macro redefinition
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1283): note: see previous definition of 'min'
-  svmpredict.c
-  svm.c
-d:\politechnika\mlwft\mlwft14\mlwft14\svm.c(10): warning C4311: 'type cast': pointer truncation from 'HINSTANCE' to 'unsigned int'
-  splittrainfile.c
-d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(19): warning C4013: 'countLine' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(41): warning C4013: 'strcpy' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(42): warning C4013: 'itoa' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\splittrainfile.c(43): warning C4013: 'strcat' undefined; assuming extern returning int
-  mlwft14.c
-  format.c
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(65): warning C4013: 'countLine' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(66): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-  mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
+﻿  mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)

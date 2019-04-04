@@ -50,7 +50,7 @@ static void exit_input_error(int line_num)
 	exit(1);
 }
 
-void parse_command_line(/*int argc, char **argv,*/ char *parameters/*, char *model_file_name*/);
+char *parse_command_line(/*int argc, char **argv,*/ char *parameters/*, char *model_file_name*/);
 void read_problem(const char *filename);
 //void do_cross_validation();
 
@@ -82,12 +82,11 @@ static char* readline(FILE *input)
 	return line;
 }
 
-int svmTrain(char *input_file_name, char *model_file_name, char *parameters)
+char *svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 {
 
 	const char *error_msg;
-
-	parse_command_line(parameters);
+	char *command = parse_command_line(parameters);
 	read_problem(input_file_name);
 	error_msg = svm_check_parameter(&prob, &param);
 
@@ -118,52 +117,14 @@ int svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 	free(x_space);
 	free(line);
 
-	return 0;
+	return command;
 }
 
-/*void do_cross_validation()
+
+char *parse_command_line(char *parameters)
 {
-	int i;
-	int total_correct = 0;
-	double total_error = 0;
-	double sumv = 0, sumy = 0, sumvv = 0, sumyy = 0, sumvy = 0;
-	double *target = Malloc(double, prob.l);
-
-	svm_cross_validation(&prob, &param, nr_fold, target);
-	if (param.svm_type == EPSILON_SVR ||
-		param.svm_type == NU_SVR)
-	{
-		for (i = 0; i<prob.l; i++)
-		{
-			double y = prob.y[i];
-			double v = target[i];
-			total_error += (v - y)*(v - y);
-			sumv += v;
-			sumy += y;
-			sumvv += v*v;
-			sumyy += y*y;
-			sumvy += v*y;
-		}
-		printf("Cross Validation Mean squared error = %g\n", total_error / prob.l);
-		printf("Cross Validation Squared correlation coefficient = %g\n",
-			((prob.l*sumvy - sumv*sumy)*(prob.l*sumvy - sumv*sumy)) /
-			((prob.l*sumvv - sumv*sumv)*(prob.l*sumyy - sumy*sumy))
-		);
-	}
-	else
-	{
-		for (i = 0; i<prob.l; i++)
-			if (target[i] == prob.y[i])
-				++total_correct;
-		printf("Cross Validation Accuracy = %g%%\n", 100.0*total_correct / prob.l);
-	}
-	free(target);
-}
-*/
-
-
-void parse_command_line(char *parameters)
-{
+	int offset = 0;
+	char command[1000];
 	int i = 0;
 	char pr[100];
 	char *results[100000];
@@ -187,8 +148,6 @@ void parse_command_line(char *parameters)
 	param.nr_weight = 0;
 	param.weight_label = NULL;
 	param.weight = NULL;
-//	cross_validation = 1;
-	nr_fold = 4;
 
 	strcpy(pr, parameters);
 	result = strtok(pr, " ");
@@ -245,15 +204,6 @@ void parse_command_line(char *parameters)
 			print_func = &print_null;
 			i--;
 			break;
-/*		case 'v':
-			cross_validation = 1;
-			nr_fold = atoi(strtok(NULL, "="));
-			if (nr_fold < 2)
-			{
-				fprintf(stderr, "n-fold cross validation: n must >= 2\n");
-				exit_with_help();
-			}
-			break;*/
 		case 'w':
 			++param.nr_weight;
 			param.weight_label = (int *)realloc(param.weight_label, sizeof(int)*param.nr_weight);
@@ -266,9 +216,18 @@ void parse_command_line(char *parameters)
 			exit_with_help();
 		}
 	}
+	offset += sprintf(command+offset, "svm_type:%d, kernel_type:%d, degree:%d, gamma:%lf, coef0:%lf, cache_size:%lf, eps:%lf, c:%lf, nr_weight:%d ", param.svm_type, param.kernel_type, param.degree, param.gamma, param.coef0, param.cache_size, param.eps, param.C, param.nr_weight);
+
+	for (int f = 0; f < param.nr_weight; f++)
+	{
+		offset += sprintf(command + offset, "weight_lable%d:%d, weight%d:%lf", f-1, param.weight_label[f-1], f, param.weight[f-1]);
+	}
+
+	offset += sprintf(command + offset, "nu:%lf, p:%lf, shrinking:%d, probability:%d", param.nu, param.p, param.shrinking, param.probability);
 
 	svm_set_print_string_function(print_func);
-
+	
+	return command;
 }
 
 // read in a problem (in svmlight format)

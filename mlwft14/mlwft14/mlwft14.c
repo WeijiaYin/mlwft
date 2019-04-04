@@ -9,7 +9,7 @@
 #include "svmtrain.h"
 #include "svmpredict.h"
 #include "string.h"
-#include "splittrainfile.h"
+#include "crossvalidation.h"
 #include "io.h"
 
 char inputFile[200];
@@ -29,7 +29,7 @@ char k[3];
 int main()
 {
 	searchMethod();
-/*	printf("Input the path of the train dataset and test dataset, split by ,\n");
+	printf("Input the path of the train dataset and test dataset, split by ,\n");
 	scanf("%s", &inputFile);
 	trainFile = strtok(inputFile, ",");
 	testFile = strtok(NULL, ",");
@@ -61,28 +61,33 @@ int main()
 		outputFile1 = strtok(test, ".");
 		strcat(outputFile1, "_test.scale");
 		scale(testFile, outputFile1);
-		trainFile = outputFile1;
+		testFile = outputFile1;
 	}
-*/
 
-/*	printf("Input a k, for crossvalidation, 1-no crossvalidation,2~10-regularvalidation,LOO-leave-one-out crossvalidation\n");
+
+	printf("Input a k, for crossvalidation, 1-no crossvalidation,2~10-regularvalidation,LOO-leave-one-out crossvalidation\n");
 	scanf("%s", &k);
 	if (strcmp(k, "1") == 0)
 	{
-		svmTrain("diabetes_split_train.scale", "111.model", "codifjlskf");
+		nocrossvalidation(trainFile, "parameters.txt", testFile);
 	}
 	else if (strcmp(k, "2") == 0 || strcmp(k, "3") == 0 || strcmp(k, "4") == 0 || strcmp(k, "5") == 0 || strcmp(k, "6") == 0 || strcmp(k, "7") == 0 || strcmp(k, "8") == 0 || strcmp(k, "9") == 0 || strcmp(k, "10") == 0)
 	{
 		int a = atoi(k);
-
+		kcrossvalidation(a, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
 	}
-	*/
+	else if (strcmp(k, "LOO"))
+	{
+		loocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+	}
+	
 //	splitTrainFile(3, "diabetes_split_train.scale", "asdsf");
 //	trainTrainFile(3, ".\\train", "sdfad");
-	kcrossvalidation(8, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+//	kcrossvalidation(3, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+//	loocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+//	nocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
 //	svmTrain();
 //	svmpredict();
-
 
 
     return 0;

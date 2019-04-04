@@ -4,9 +4,13 @@
 
 int format(char *inputFile, char **outputFile)
 {
+	int g;
+	int p = 0;
 	int i = 0;
+	int flag = 0;
 	char *result = NULL;
 	char *results[1000];
+	char convert[100][100];
 	char line[10000];
 	double e = 0;
 
@@ -33,7 +37,23 @@ int format(char *inputFile, char **outputFile)
 		i = 1;
 		fgets(line, 1000, csvFile);
 		result = strtok(line, ",");
-		fprintf(svmFile, "%s ", result);
+		for (int h = 0; h < p; h++)
+		{
+			if (strcmp(convert[h], result) == 0)
+			{
+				flag = 1;
+				g = h;
+			}
+		}
+		if (flag == 1)
+			flag = 0;
+		else
+		{
+			strcpy(convert[p], result);
+			g = p;
+			p++;
+		}
+		fprintf(svmFile, "%d ", g);
 		while (result != NULL)
 		{
 			result = strtok(NULL, ",");

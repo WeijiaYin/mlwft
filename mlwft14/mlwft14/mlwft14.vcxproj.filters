@@ -39,7 +39,7 @@
     <ClInclude Include="svmpredict.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="splittrainfile.h">
+    <ClInclude Include="crossvalidation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClCompile Include="svmpredict.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="splittrainfile.c">
+    <ClCompile Include="crossvalidation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
