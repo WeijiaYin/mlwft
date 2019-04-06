@@ -74,11 +74,11 @@ int main()
 	else if (strcmp(k, "2") == 0 || strcmp(k, "3") == 0 || strcmp(k, "4") == 0 || strcmp(k, "5") == 0 || strcmp(k, "6") == 0 || strcmp(k, "7") == 0 || strcmp(k, "8") == 0 || strcmp(k, "9") == 0 || strcmp(k, "10") == 0)
 	{
 		int a = atoi(k);
-		kcrossvalidation(a, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+		kcrossvalidation(a, trainFile, "parameters.txt", testFile);
 	}
 	else if (strcmp(k, "LOO"))
 	{
-		loocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
+		loocrossvalidation(trainFile, "parameters.txt", testFile);
 	}
 	
 //	splitTrainFile(3, "diabetes_split_train.scale", "asdsf");

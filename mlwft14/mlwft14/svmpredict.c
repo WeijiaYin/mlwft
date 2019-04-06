@@ -172,13 +172,10 @@ static void exit_with_help()
 	exit(1);
 }
 
-double svmpredict(char *inputFile, char *modelFile)
+double svmpredict(char *inputFile, char *modelFile, char *outputFile)
 {
 	double accuracy = 0;
 	FILE *input, *output;
-//	char *inputFile = "glass.scale.txt";
-	char *outputFile = "glass.scale_output.txt";
-//	char *modelFile = "glass.scale_train.txt";
 
 	input = fopen(inputFile, "r");
 	if (input == NULL)

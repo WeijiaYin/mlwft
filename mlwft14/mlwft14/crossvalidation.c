@@ -7,12 +7,14 @@
 
 
 char *filename = "./model/model.";
+char *outcome = "./outcome/outcome.";
 
 
 int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile)
 {
 	char line[10000];
 	char splitname[100];
+	char accuracyname[100];
 	char numbertochar[10];
 	char numbertochar1[10];
 	int count = countLine(trainFile);
@@ -27,6 +29,7 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 	double maxAccuracyOnTest = 0.0;
 	double maxAccuracyOnTrain = 0.0;
 	char bestModelOnTest[1000];
+	char bestConfusionMatrix[1000];
 	FILE *parameters;
 	char *command;
 	char lineParameters[100000];
@@ -34,12 +37,14 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 	parameters = fopen(parameterFile, "r");
 	for (int h = 0; h < countParameters; h++)
 	{
+		strcpy(accuracyname, outcome);
+		itoa(h, numbertochar1, 10);
 		fgets(lineParameters, 10000, parameters);
+		strcat(accuracyname, numbertochar1);
 		for (int i = 1; i <= k; i++)
 		{
 			FILE *tf = fopen(trainFile, "r");
 			strcpy(splitname, filename);
-			itoa(h, numbertochar1, 10);
 			strcat(splitname, numbertochar1);
 			itoa(i, numbertochar, 10);
 			strcat(splitname, numbertochar);
@@ -64,7 +69,7 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 			fclose(p1);
 			fclose(tf);
 			command = svmTrain("temp_train", s, lineParameters);
-			accuracy = svmpredict("temp_test", s);
+			accuracy = svmpredict("temp_test", s, "temp_outcome");
 			if (accuracy > maxAccuracy)
 			{
 				maxAccuracy = accuracy;
@@ -72,11 +77,12 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 			}
 		}
 
-		accuracyTrain = svmpredict(testFile, bestModel);
+		accuracyTrain = svmpredict(testFile, bestModel, accuracyname);
 		if (accuracyTrain > maxAccuracyOnTest)
 		{
 			maxAccuracyOnTest = accuracyTrain;
 			strcpy(bestModelOnTest, bestModel);
+			strcpy(bestConfusionMatrix, accuracyname);
 			maxAccuracyOnTrain = maxAccuracy;
 			strcpy(bestParameters, command);
 		}
@@ -84,8 +90,44 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 	}
 
 	printf("best parameters:%s, best model:%s accuracy on trainset: %lf, accuracy on testset: %lf", bestParameters, bestModelOnTest, maxAccuracyOnTrain, maxAccuracyOnTest);
+	double ac = svmpredict(trainFile, bestModelOnTest, "train.outcome");
 
+	FILE *outcomeFile;
+	int line_count;
+	outcomeFile = fopen("outcome.csv", "w");
+	fprintf(outcomeFile, "best parameters:%s\n");
+	fprintf(outcomeFile, "%s\n", bestParameters);
+	fprintf(outcomeFile, "accuracy on Train: ");
+	fprintf(outcomeFile, "%lf\n", ac);
+	fprintf(outcomeFile, "confusion matrix on Train:\n");
+	FILE *trainOutcomeFile;
+	trainOutcomeFile = fopen("train.outcome", "r");
+	line_count = countLine("train.outcome");
+	for (int i = 0; i < line_count; i++)
+	{
+		fgets(line, 100000, trainOutcomeFile);
+		fprintf(outcomeFile, "%s", line);
+	}
+
+	fprintf(outcomeFile, "\n");
+	fprintf(outcomeFile, "accuracy on Test: ");
+
+	fprintf(outcomeFile, "%lf\n", maxAccuracyOnTest);
+	fprintf(outcomeFile, "confusion matrix on Test:\n");
+	FILE *confusionMatrixOnTest;
+	confusionMatrixOnTest = fopen(bestConfusionMatrix, "r");
+	line_count = countLine(bestConfusionMatrix);
+	for (int i = 0; i < line_count; i++)
+	{
+		fgets(line, 100000, confusionMatrixOnTest);
+		fprintf(outcomeFile, "%s", line);
+	}
+
+
+	fclose(confusionMatrixOnTest);
+	fclose(trainOutcomeFile);
 	fclose(parameters);
+	fclose(outcomeFile);
 	return 0;
 }
 
@@ -146,7 +188,7 @@ int loocrossvalidation(char *trainFile, char *parameterFile, char *testFile)
 			fclose(p1);
 			fclose(tf);
 			command = svmTrain("temp_train", s, lineParameters);
-			accuracy = svmpredict("temp_test", s);
+			accuracy = svmpredict("temp_test", s, "");
 			if (accuracy > maxAccuracy)
 			{
 				maxAccuracy = accuracy;
@@ -154,7 +196,7 @@ int loocrossvalidation(char *trainFile, char *parameterFile, char *testFile)
 			}
 		}
 
-		accuracyTrain = svmpredict(testFile, bestModel);
+		accuracyTrain = svmpredict(testFile, bestModel, "");
 		if (accuracyTrain > maxAccuracyOnTest)
 		{
 			maxAccuracyOnTest = accuracyTrain;
@@ -201,7 +243,7 @@ int nocrossvalidation(char *trainFile, char *parameterFile, char *testFile)
 		strcat(splitname, numbertochar1);
 		char *s = splitname;
 		command = svmTrain(trainFile, s, lineParameters);
-		accuracy = svmpredict(testFile, s);
+		accuracy = svmpredict(testFile, s, "");
 		if (accuracy > maxAccuracy)
 		{
 			maxAccuracy = accuracy;
