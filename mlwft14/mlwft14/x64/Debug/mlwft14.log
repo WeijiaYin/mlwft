@@ -1,16 +1,9 @@
-﻿  crossvalidation.c
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(20): warning C4013: 'countLine' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(40): warning C4013: 'strcpy' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(41): warning C4013: 'itoa' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(43): warning C4013: 'strcat' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(98): warning C4473: 'fprintf' : not enough arguments passed for format string
-  d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(98): note: placeholders and their parameters expect 1 variadic arguments, but 0 were provided
-  d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(98): note: the missing variadic argument 1 is required by format string '%s'
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(231): warning C4101: 'bestModelOnTest': unreferenced local variable
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(218): warning C4101: 'line': unreferenced local variable
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(220): warning C4101: 'numbertochar': unreferenced local variable
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(223): warning C4101: 'p': unreferenced local variable
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(227): warning C4101: 'accuracyTrain': unreferenced local variable
-d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(224): warning C4101: 'p1': unreferenced local variable
+﻿  format.c
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(86): warning C4013: 'countLine' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(87): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(156): warning C4013: 'atoi' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(246): warning C4013: 'srand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(246): warning C4013: 'time' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(250): warning C4013: 'rand' undefined; assuming extern returning int
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)

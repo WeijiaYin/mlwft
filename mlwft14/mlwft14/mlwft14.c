@@ -11,8 +11,10 @@
 #include "string.h"
 #include "crossvalidation.h"
 #include "io.h"
+#include "malloc.h"
 
-char inputFile[200];
+
+/*char inputFile[200];
 char *trainFile;
 char *testFile;
 double proportions;
@@ -25,10 +27,12 @@ char test[50];
 char a[100];
 char b[100];
 char k[3];
+*/
+
 
 int main()
 {
-	searchMethod();
+/*	searchMethod();
 	printf("Input the path of the train dataset and test dataset, split by ,\n");
 	scanf("%s", &inputFile);
 	trainFile = strtok(inputFile, ",");
@@ -88,8 +92,8 @@ int main()
 //	nocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
 //	svmTrain();
 //	svmpredict();
-
-
+*/
+	seperateClass("glass.scale.txt", "oout.txt");
     return 0;
 }
 

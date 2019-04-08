@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "format.h"
 #include "string.h"
+#include "malloc.h"
 
 int format(char *inputFile, char **outputFile)
 {
@@ -131,4 +132,133 @@ int countLine(char *inputFile)
 	fclose(fp); 
 	if (lc != '\n') line++;
 	return line;
+}
+
+
+typedef struct node
+{
+	char data[100000];
+	int class;
+	struct node *pNext;        
+}Node, *pNode;
+
+
+pNode CreateList(char *inputFile, int *i)
+{
+	char class[10000];
+	char line[10000];
+	FILE *f = fopen(inputFile, "r");
+	fgets(line, sizeof(line), f);
+	strcpy(class, line);
+	strtok(class, " ");
+	pNode pHead = (pNode)malloc(sizeof(Node));
+	strcpy(pHead->data, line);
+	pHead -> class = atoi(class);
+	pHead -> pNext = NULL;
+	pNode pTail = pHead;
+	*i = *i + 1;;
+
+	while (!feof(f))
+	{
+		fgets(line, sizeof(line), f);
+		strcpy(class, line);
+		strtok(class, " ");
+		pNode pNew = (pNode)malloc(sizeof(Node));
+		strcpy(pNew->data, line);
+		pNew -> class = atoi(class);
+		pTail->pNext = pNew;
+		pNew->pNext = NULL;
+		pTail = pNew;
+		*i = *i +1;
+	}
+	pTail->pNext = pHead;
+	fclose(f);
+	return pTail;
+}
+
+/*int seperateClass(char *input, char *output)
+{
+	int k = 0;
+	int i = 0;
+	int class;
+	pNode p;
+	pNode temp;
+	pNode pTail = NULL;            
+	pTail = CreateList(input, &i);
+	FILE *outputFile = fopen(output, "w");
+	fprintf(outputFile, "%s", pTail->pNext->data);
+	class = pTail->pNext->class;
+	temp = pTail->pNext->pNext;
+	pTail->pNext = temp;
+	p = pTail;
+	while (p->pNext != p)
+	{
+		for (int j = i-1; j > 0; j--) {
+			if (p->pNext->class != class)
+			{
+				fprintf(outputFile, "%s", p->pNext->data);
+				class = p->pNext->class;
+				temp = p->pNext->pNext;
+				p->pNext = temp;
+				k++;
+			}
+			else
+				p = p->pNext;
+			}
+		if (k != 0)
+		{
+			i = i - k;
+			k = 0;
+		}
+		else
+		{
+			for (int t = 0; t < i-1; t++)
+			{
+				fprintf(outputFile, "%s", p->pNext->data);
+				temp = p->pNext->pNext;
+				p->pNext = temp;
+				p = p->pNext;
+			}
+		}
+	}
+	fclose(outputFile);
+	return 0;
+}*/
+
+
+int seperateClass(char *input, char *output)
+{
+	FILE *inputFile;
+	FILE *outputFile;
+	char line[100000];
+	char lines[500][1000];
+	int i = 0;
+
+	inputFile = fopen(input, "r");
+	outputFile = fopen(output, "w");
+	fgets(line, sizeof(line), inputFile);
+	while (!feof(inputFile))
+	{
+		strcpy(lines[i], line);
+		fgets(line, sizeof(line), inputFile);
+		i++;
+	}
+	srand(time(NULL));
+	char temp[10000];
+	for (int j = 0; j < i; j++)
+	{
+		int rnd = rand() % i;
+		strcpy(temp, lines[j]);
+		strcpy(lines[j], lines[rnd]);
+		strcpy(lines[rnd], temp);
+	}
+
+	for (int t = 0; t < i; t++)
+	{
+		fprintf(outputFile, "%s", lines[t]);
+	}
+	
+	fclose(inputFile);
+	fclose(outputFile);
+	return 0;
 }
