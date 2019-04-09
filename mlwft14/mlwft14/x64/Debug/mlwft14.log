@@ -1,9 +1,8 @@
 ﻿  format.c
 d:\politechnika\mlwft\mlwft14\mlwft14\format.c(86): warning C4013: 'countLine' undefined; assuming extern returning int
 d:\politechnika\mlwft\mlwft14\mlwft14\format.c(87): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(156): warning C4013: 'atoi' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(246): warning C4013: 'srand' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(246): warning C4013: 'time' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(250): warning C4013: 'rand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(160): warning C4013: 'srand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(160): warning C4013: 'time' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(164): warning C4013: 'rand' undefined; assuming extern returning int
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)
