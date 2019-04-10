@@ -1,10 +1,5 @@
-﻿  format.c
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(23): warning C4013: 'countLine' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(40): warning C4047: '==': 'char [1024]' differs in levels of indirection from 'int'
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(169): warning C4013: 'srand' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(169): warning C4013: 'time' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(172): warning C4013: 'rand' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(146): warning C4101: 'outputFileName': unreferenced local variable
+﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  mlwft14.c
+d:\politechnika\mlwft\mlwft14\mlwft14\mlwft14.c(94): warning C4013: 'atoi' undefined; assuming extern returning int
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)

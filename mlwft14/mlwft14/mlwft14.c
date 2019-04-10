@@ -94,7 +94,7 @@ int main()
 		int a = atoi(k);
 		kcrossvalidation(a, trainFile, "parameters.txt", testFile);
 	}
-	else if (strcmp(k, "LOO"))
+	else if (strcmp(k, "LOO") == 0)
 	{
 		loocrossvalidation(trainFile, "parameters.txt", testFile);
 	}
