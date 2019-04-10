@@ -1,8 +1,10 @@
 ﻿  format.c
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(86): warning C4013: 'countLine' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(87): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(160): warning C4013: 'srand' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(160): warning C4013: 'time' undefined; assuming extern returning int
-d:\politechnika\mlwft\mlwft14\mlwft14\format.c(164): warning C4013: 'rand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(23): warning C4013: 'countLine' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(40): warning C4047: '==': 'char [1024]' differs in levels of indirection from 'int'
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(169): warning C4013: 'srand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(169): warning C4013: 'time' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(172): warning C4013: 'rand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(146): warning C4101: 'outputFileName': unreferenced local variable
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)

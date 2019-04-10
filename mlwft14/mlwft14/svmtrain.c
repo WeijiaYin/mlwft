@@ -93,14 +93,7 @@ char *svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 		fprintf(stderr, "ERROR: %s\n", error_msg);
 		exit(1);
 	}
-
-/*	if (cross_validation)
-	{
-		do_cross_validation();
-	}
-	*/
 	
-
 	model = svm_train(&prob, &param);
 	if (svm_save_model(model_file_name, model))
 	{

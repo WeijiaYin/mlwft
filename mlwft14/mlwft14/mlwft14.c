@@ -14,9 +14,11 @@
 #include "malloc.h"
 
 
-/*char inputFile[200];
+char inputFile[200];
 char *trainFile;
 char *testFile;
+char *temp;
+char *temp1;
 double proportions;
 char *outputFile;
 char *outputFile1;
@@ -27,17 +29,24 @@ char test[50];
 char a[100];
 char b[100];
 char k[3];
-*/
+
 
 
 int main()
 {
-/*	searchMethod();
+	searchMethod();
 	printf("Input the path of the train dataset and test dataset, split by ,\n");
 	scanf("%s", &inputFile);
 	trainFile = strtok(inputFile, ",");
 	testFile = strtok(NULL, ",");
 	format(trainFile, &outputFile);
+	strcpy(train, trainFile);
+	temp = strtok(train, ".");
+	strcat(temp, "_shuffle.train");
+	shuffleClass(trainFile, temp);
+	outputFile = temp;
+	trainFile = temp;
+
 	if (testFile == NULL)
 	{
 		printf("only one file provided, input the proportions to split the file\n");
@@ -47,6 +56,11 @@ int main()
 	else
 	{
 		format(testFile, &outputFile1);
+		strcpy(test, testFile);
+		temp1 = strtok(test, ".");
+		strcat(temp1, "_shuffle.test");
+		shuffleClass(testFile, temp1);
+		outputFile1 = temp1;
 	}
 	strcpy(a, outputFile);
 	strcpy(b, outputFile1);
@@ -84,16 +98,8 @@ int main()
 	{
 		loocrossvalidation(trainFile, "parameters.txt", testFile);
 	}
-	
-//	splitTrainFile(3, "diabetes_split_train.scale", "asdsf");
-//	trainTrainFile(3, ".\\train", "sdfad");
-//	kcrossvalidation(3, "diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
-//	loocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
-//	nocrossvalidation("diabetes_split_train.scale", "parameters.txt", "diabetes_split_test.scale");
-//	svmTrain();
-//	svmpredict();
-*/
-	seperateClass("glass.scale.txt", "oout.txt");
+
+	shuffleClass("glass.scale.txt", "oout.txt");
     return 0;
 }
 
