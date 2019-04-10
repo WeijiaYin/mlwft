@@ -98,8 +98,8 @@ int main()
 	{
 		loocrossvalidation(trainFile, "parameters.txt", testFile);
 	}
+	
 
-	shuffleClass("glass.scale.txt", "oout.txt");
     return 0;
 }
 

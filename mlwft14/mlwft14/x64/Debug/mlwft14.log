@@ -1,5 +1,4 @@
-﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
-  mlwft14.c
+﻿  mlwft14.c
 d:\politechnika\mlwft\mlwft14\mlwft14\mlwft14.c(94): warning C4013: 'atoi' undefined; assuming extern returning int
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)
