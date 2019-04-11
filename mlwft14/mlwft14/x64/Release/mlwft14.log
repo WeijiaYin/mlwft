@@ -1,37 +1,15 @@
-﻿  stdafx.c
-  format.c
-format.c(22): warning C4013: 'countLine' undefined; assuming extern returning int
-format.c(29): warning C4013: 'exit' undefined; assuming extern returning int
-format.c(39): warning C4047: '==': 'char [1024]' differs in levels of indirection from 'int'
-format.c(91): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-format.c(173): warning C4013: 'srand' undefined; assuming extern returning int
-format.c(173): warning C4013: 'time' undefined; assuming extern returning int
-format.c(176): warning C4013: 'rand' undefined; assuming extern returning int
-format.c(150): warning C4101: 'outputFileName': unreferenced local variable
-  mlwft14.c
-mlwft14.c(98): warning C4013: 'atoi' undefined; assuming extern returning int
-mlwft14.c(107): warning C4013: 'exit' undefined; assuming extern returning int
-mlwft14.c(111): warning C4013: 'system' undefined; assuming extern returning int
-mlwft14.c(27): warning C4101: 'svmModel': unreferenced local variable
-  crossvalidation.c
+﻿  crossvalidation.c
 crossvalidation.c(20): warning C4013: 'countLine' undefined; assuming extern returning int
 crossvalidation.c(45): warning C4013: 'rmdir' undefined; assuming extern returning int
 crossvalidation.c(46): warning C4013: 'mkdir' undefined; assuming extern returning int
 crossvalidation.c(53): warning C4013: 'itoa' undefined; assuming extern returning int
+crossvalidation.c(231): warning C4013: 'free' undefined; assuming extern returning int
 crossvalidation.c(161): warning C4101: 'bestModelOnTest': unreferenced local variable
-  svm.c
-svm.c(10): warning C4311: 'type cast': pointer truncation from 'HINSTANCE' to 'unsigned int'
-  svmpredict.c
-  svmscale.c
-svmscale.c(22): warning C4005: 'max': macro redefinition
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdlib.h(1282): note: see previous definition of 'max'
-svmscale.c(23): warning C4005: 'min': macro redefinition
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdlib.h(1283): note: see previous definition of 'min'
-  svmtrain.c
   Generating code
-d:\politechnika\mlwft\mlwft14\mlwft14\svmtrain.c(224): warning C4172: returning address of local variable or temporary: command
-d:\politechnika\mlwft\mlwft14\mlwft14\svmtrain.c(114): warning C4172: returning address of local variable or temporary: command1
-  All 37 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+d:\politechnika\mlwft\mlwft14\mlwft14\svmtrain.c(225): warning C4172: returning address of local variable or temporary: command
+  9 of 37 functions (24.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Release\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Release\mlwft14.pdb (Full PDB)

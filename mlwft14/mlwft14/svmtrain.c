@@ -84,9 +84,10 @@ char* svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 {
 
 	const char *error_msg;
-	char command1[1024];
+	char *command1;
 	char *command;
 	command = parse_command_line(parameters);
+	command1 = (char *)malloc(1024 * sizeof(char));
 	strcpy(command1, command);
 	read_problem(input_file_name);
 	error_msg = svm_check_parameter(&prob, &param);

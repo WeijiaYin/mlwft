@@ -228,5 +228,6 @@ int nocrossvalidation(char *trainFile, char *parameterFile, char *testFile)
 	fclose(confusionTest);
 	fclose(outcomeFile);
 	fclose(parameters);
+	free(command);
 	return 0;
 }
