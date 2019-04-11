@@ -37,8 +37,12 @@ int main()
 	printf("Input the path of the train dataset and test dataset, split by ,\n");
 	scanf("%s", &inputFile);
 	trainFile = strtok(inputFile, ",");
-	strcpy(a, strtok(NULL, ","));
-	testFile = a;
+	testFile = strtok(NULL, ",");
+	if (testFile != NULL)
+	{
+		strcpy(a, testFile);
+		testFile = a;
+	}
 	format(trainFile, &outputFile);
 	strcpy(train, trainFile);
 	temp = strtok(train, ".");
@@ -66,7 +70,7 @@ int main()
 	strcpy(b, outputFile1);
 	trainFile = a;
 	testFile = b;
-	printf("Do you want to normalize data? Input Yes if yes, input No if no\n");
+	printf("Do you want to normalize data? Input Yes if yes, other inputs will be no\n");
 	scanf("%s", &normalize);
 	if (strcmp(normalize, "Yes") == 0)
 	{
@@ -97,6 +101,10 @@ int main()
 	else if (strcmp(k, "LOO") == 0)
 	{
 		loocrossvalidation(trainFile, "parameters.txt", testFile);
+	}
+	else {
+		printf("wrong input %s", k);
+		exit(1);
 	}
 	
 

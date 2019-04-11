@@ -26,7 +26,7 @@ int format(char *inputFile, char **outputFile)
 	svmFile = fopen(*outputFile, "w");
 	if (csvFile == NULL) {
 		printf("Can not load file");
-		return 1;
+		exit(1);
 	}
 
 	fgets(line, sizeof(line), csvFile);
@@ -39,7 +39,7 @@ int format(char *inputFile, char **outputFile)
 		if (line == '\n')
 		{
 			printf("there can't be blank line in file");
-			return 1;
+			exit(1);
 		}
 		result = strtok(line, ",");
 		for (h = 0; h < p; h++)
@@ -122,6 +122,11 @@ int countLine(char *inputFile)
 	int c, lc = 0; 
 	int line = 0; 
 	fp = fopen(inputFile, "r+");
+	if (fp == NULL)
+	{
+		printf("There is no file:%s", inputFile);
+		exit(1);
+	}
 	while ((c = fgetc(fp)) != EOF) 
 	{
 		if (c == '\n') line++; 

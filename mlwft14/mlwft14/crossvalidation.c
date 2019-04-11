@@ -31,7 +31,7 @@ int kcrossvalidation(int k, char *trainFile, char *parameterFile, char *testFile
 	char bestModelOnTest[100];
 	char bestConfusionMatrix[100];
 	FILE *parameters;
-	char *command;
+	char *command = NULL;
 	char lineParameters[1024];
 	char bestParameters[1024];
 	int h ,i, j= 0;
@@ -160,7 +160,7 @@ int nocrossvalidation(char *trainFile, char *parameterFile, char *testFile)
 	double maxAccuracyOnTrain = 0.0;
 	char bestModelOnTest[50];
 	FILE *parameters;
-	char *command;
+	char *command = NULL;
 	char lineParameters[1024];
 	char bestParameters[1024];
 	FILE *tf;

@@ -80,11 +80,14 @@ static char* readline(FILE *input)
 	return line;
 }
 
-char *svmTrain(char *input_file_name, char *model_file_name, char *parameters)
+char* svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 {
 
 	const char *error_msg;
-	char *command = parse_command_line(parameters);
+	char command1[1024];
+	char *command;
+	command = parse_command_line(parameters);
+	strcpy(command1, command);
 	read_problem(input_file_name);
 	error_msg = svm_check_parameter(&prob, &param);
 
@@ -108,17 +111,17 @@ char *svmTrain(char *input_file_name, char *model_file_name, char *parameters)
 	free(x_space);
 	free(line);
 
-	return command;
+	return command1;
 }
 
 
 char *parse_command_line(char *parameters)
 {
 	int offset = 0;
-	char command[1000];
+	char command[1024];
 	int i = 0;
 	char pr[100];
-	char *results[100000];
+	char *results[1024];
 	char *result;
 	char *result1;
 	void(*print_func)(const char*) = NULL;	// default printing to stdout
