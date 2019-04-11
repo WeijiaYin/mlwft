@@ -1,4 +1,33 @@
-﻿  mlwft14.c
+﻿  stdafx.c
+  svmtrain.c
+  svmscale.c
+d:\politechnika\mlwft\mlwft14\mlwft14\svmscale.c(22): warning C4005: 'max': macro redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1282): note: see previous definition of 'max'
+d:\politechnika\mlwft\mlwft14\mlwft14\svmscale.c(23): warning C4005: 'min': macro redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1283): note: see previous definition of 'min'
+  svmpredict.c
+  svm.c
+d:\politechnika\mlwft\mlwft14\mlwft14\svm.c(10): warning C4311: 'type cast': pointer truncation from 'HINSTANCE' to 'unsigned int'
+  crossvalidation.c
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(20): warning C4013: 'countLine' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(45): warning C4013: 'rmdir' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(46): warning C4013: 'mkdir' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(52): warning C4013: 'strcpy' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(53): warning C4013: 'itoa' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(55): warning C4013: 'strcat' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\crossvalidation.c(161): warning C4101: 'bestModelOnTest': unreferenced local variable
+  mlwft14.c
 d:\politechnika\mlwft\mlwft14\mlwft14\mlwft14.c(94): warning C4013: 'atoi' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\mlwft14.c(103): warning C4013: 'system' undefined; assuming extern returning int
+  format.c
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(22): warning C4013: 'countLine' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(39): warning C4047: '==': 'char [1024]' differs in levels of indirection from 'int'
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(91): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(168): warning C4013: 'srand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(168): warning C4013: 'time' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(171): warning C4013: 'rand' undefined; assuming extern returning int
+d:\politechnika\mlwft\mlwft14\mlwft14\format.c(145): warning C4101: 'outputFileName': unreferenced local variable
+  Generating Code...
+d:\politechnika\mlwft\mlwft14\mlwft14\svmtrain.c(221): warning C4172: returning address of local variable or temporary: command
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.exe
   mlwft14.vcxproj -> D:\Politechnika\mlwft\mlwft14\x64\Debug\mlwft14.pdb (Full PDB)

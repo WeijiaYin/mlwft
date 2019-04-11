@@ -13,7 +13,6 @@ int format(char *inputFile, char **outputFile)
 	int num = 0;
 	int t = 0;
 	char *result = NULL;
-//	char *results[1000];
 	char convert[1000][100];
 	char line[1024];
 	double e = 0;
