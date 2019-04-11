@@ -14,31 +14,31 @@
 #include "malloc.h"
 
 
-char inputFile[200];
-char *trainFile;
-char *testFile;
-char *temp;
-char *temp1;
-double proportions;
-char *outputFile;
-char *outputFile1;
-char *svmModel;
-char normalize[50];
-char train[50];
-char test[50];
-char a[100];
-char b[100];
-char k[3];
-
-
-
 int main()
 {
+	char inputFile[200];
+	char *trainFile;
+	char *testFile;
+	char *temp;
+	char *temp1;
+	double proportions;
+	char *outputFile;
+	char *outputFile1;
+	char *svmModel;
+	char normalize[50];
+	char train[50];
+	char test[50];
+	char a[100];
+	char b[100];
+	char k[3];
+
+
 	searchMethod();
 	printf("Input the path of the train dataset and test dataset, split by ,\n");
 	scanf("%s", &inputFile);
 	trainFile = strtok(inputFile, ",");
-	testFile = strtok(NULL, ",");
+	strcpy(a, strtok(NULL, ","));
+	testFile = a;
 	format(trainFile, &outputFile);
 	strcpy(train, trainFile);
 	temp = strtok(train, ".");
